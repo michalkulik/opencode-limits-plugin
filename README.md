@@ -33,10 +33,23 @@ Odliczanie ma format `za 2h 14m`, `za 17d 3h` albo `teraz`.
 
 ## Instalacja
 
-Plik `index.ts`, `tui.tsx`, `usage.ts` i `package.json` kopiujemy (lub linkujemy)
-do katalogu pluginu. Który wariant — zależy od tego, gdzie ma być widoczny plugin.
+### 0. Z rejestru (najszybciej)
 
-### 1. Dla całego konta (najprostsze)
+```bash
+opencode plugin add opencode-limits-plugin                                # npm
+opencode plugin add github:michalkulik/opencode-limits-plugin#v1.0.0      # git, przypięta wersja
+```
+
+`plugin add` instaluje pakiet w magazynie OpenCode i dopisuje go do globalnej
+konfiguracji. Aktualizacja: `opencode plugin update opencode-limits-plugin`,
+usunięcie: `opencode plugin remove opencode-limits-plugin`.
+
+Poniższe warianty warto wybrać, gdy plugin ma być **katalogiem źródłowym**
+(edycja na żywo, bez reinstalacji). Plik `index.ts`, `tui.tsx`, `usage.ts`
+i `package.json` kopiujemy (lub linkujemy) do katalogu pluginu. Który wariant —
+zależy od tego, gdzie ma być widoczny plugin.
+
+### 1. Dla całego konta
 
 ```bash
 mkdir -p ~/.config/opencode/plugins
@@ -158,11 +171,19 @@ rm ~/.config/opencode/plugins/go-usage        # albo .opencode/plugins/go-usage 
 # i usuń wpis z tablicy "plugins" w opencode.json(c) / cli.json, jeśli był dodany
 ```
 
-## Publikacja jako paczka npm
+## Wydanie nowej wersji
 
-`package.json` ma już eksporty `.` i `./tui`, więc wystarczy:
+`package.json` ma eksporty `.` i `./tui`, więc wydanie to:
 
 ```bash
-npm publish            # albo: npm publish --access public dla scope'ów
-opencode plugin add opencode-go-usage
+# 1. podnieś "version" w package.json
+git commit -am "chore: vX.Y.Z" && git push
+git tag -a vX.Y.Z -m "vX.Y.Z" && git push origin vX.Y.Z
+gh release create vX.Y.Z --notes "..."
+
+# 2. npm (token w ~/.npmrc albo przez --//registry.npmjs.org/:_authToken=...)
+npm publish
+
+# 3. instalacja przez użytkowników
+opencode plugin add opencode-limits-plugin
 ```

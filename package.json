@@ -1,5 +1,5 @@
 {
-  "name": "opencode-go-usage",
+  "name": "opencode-limits-plugin",
   "version": "1.0.0",
   "type": "module",
   "description": "Limity subskrypcji OpenCode Go (5h / tydzień / miesiąc) w bocznym panelu OpenCode",
