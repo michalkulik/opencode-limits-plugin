@@ -3,6 +3,22 @@
   "version": "1.0.0",
   "type": "module",
   "description": "Limity subskrypcji OpenCode Go (5h / tydzień / miesiąc) w bocznym panelu OpenCode",
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/michalkulik/opencode-limits-plugin.git"
+  },
+  "homepage": "https://github.com/michalkulik/opencode-limits-plugin#readme",
+  "bugs": {
+    "url": "https://github.com/michalkulik/opencode-limits-plugin/issues"
+  },
+  "keywords": [
+    "opencode",
+    "opencode-plugin",
+    "limits",
+    "usage",
+    "tui",
+    "sidebar"
+  ],
   "exports": {
     ".": "./index.ts",
     "./tui": "./tui.tsx"
