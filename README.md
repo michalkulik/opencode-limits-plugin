@@ -37,7 +37,7 @@ Odliczanie ma format `za 2h 14m`, `za 17d 3h` albo `teraz`.
 
 ```bash
 opencode plugin add opencode-limits-plugin                                # npm
-opencode plugin add github:michalkulik/opencode-limits-plugin#v1.0.0      # git, przypięta wersja
+opencode plugin add github:michalkulik/opencode-limits-plugin#v1.0.1      # git, przypięta wersja
 ```
 
 `plugin add` instaluje pakiet w magazynie OpenCode i dopisuje go do globalnej
@@ -149,6 +149,29 @@ ustawiać.
 | `index.ts` | wymagany wpis po stronie serwera (pusty — plugin jest tylko TUI) |
 | `package.json` | metadane i eksporty (potrzebne przy publikacji jako paczka npm) |
 | `tsconfig.json` | ustawienia edytora (JSX: `@opentui/solid`) |
+
+## Rozwijanie
+
+Dwie zasady, bez których plugin nie wstanie po instalacji z rejestru:
+
+1. **`tui.tsx` musi zaczynać się od pragmy w pierwszej linii:**
+
+   ```tsx
+   /** @jsxImportSource @opentui/solid */
+   ```
+
+   Transform JSX OpenTUI celowo pomija ścieżki z `node_modules`, więc plik
+   instalowany z npm/Gita jest transpilowany domyślny loaderem Buna
+   (`react/jsx-runtime`) i loadery padają z `Cannot find package 'react'`.
+   Wariant katalogowy (symlink/kopia) działa też bez pragmy — błąd wychodzi
+   dopiero przy instalacji z paczki.
+
+2. **`index.ts` nic nie importuje** — lokalny katalog pluginu nie ma
+   `node_modules`, a loader serwera nie wstrzykuje mu `@opencode/plugin`.
+   Wystarczy zwykły obiekt `{ id, setup }`.
+
+Po zmianach: `npm publish`, a na maszynach użytkowników
+`opencode plugin update opencode-limits-plugin`.
 
 ## Sprawdzanie instalacji
 

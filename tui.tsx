@@ -1,3 +1,4 @@
+/** @jsxImportSource @opentui/solid */
 // Blok „OpenCode Go” w bocznym panelu sesji — tuż pod blokiem Context.
 //
 // Slot: append "sidebar.content". Kolejność w slocie = kolejność włączenia
