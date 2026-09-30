@@ -1,0 +1,20 @@
+{
+  "name": "opencode-go-usage",
+  "version": "1.0.0",
+  "type": "module",
+  "description": "Limity subskrypcji OpenCode Go (5h / tydzień / miesiąc) w bocznym panelu OpenCode",
+  "exports": {
+    ".": "./index.ts",
+    "./tui": "./tui.tsx"
+  },
+  "files": [
+    "index.ts",
+    "tui.tsx",
+    "usage.ts"
+  ],
+  "peerDependencies": {
+    "@opentui/core": ">=0.5.8",
+    "@opentui/solid": ">=0.5.8",
+    "solid-js": ">=1.9.0"
+  }
+}
