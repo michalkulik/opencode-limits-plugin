@@ -21,12 +21,16 @@
   ],
   "exports": {
     ".": "./index.ts",
-    "./tui": "./tui.tsx"
+    "./tui": "./tui.tsx",
+    "./web": "./web.jsx",
+    "./plugin.js": "./plugin.js"
   },
   "files": [
     "index.ts",
     "tui.tsx",
-    "usage.ts"
+    "usage.ts",
+    "web.jsx",
+    "plugin.js"
   ],
   "peerDependencies": {
     "@opentui/core": ">=0.5.8",
